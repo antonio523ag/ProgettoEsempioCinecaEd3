@@ -57,7 +57,8 @@ public class PrimoController {
         return "Marca: "+a.getMarca()+" Modello: "+a.getModello()+" Anno: "+a.getAnnoImmatricolazione();
     }
 
-    public String getXML(){
-        return null;
+    @GetMapping(value="/getXML",produces = MediaType.APPLICATION_XML_VALUE)
+    public Autovettura getXML(){
+        return new Autovettura("Fiat","Panda",1990);
     }
 }

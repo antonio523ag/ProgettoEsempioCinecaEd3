@@ -58,6 +58,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-h2console</artifactId>
 		</dependency>
+		<!-- per abilitare il ritorno in XML-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
