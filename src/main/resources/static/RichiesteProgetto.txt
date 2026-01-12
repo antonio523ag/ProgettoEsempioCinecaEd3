@@ -1,0 +1,38 @@
+creare un'applicazione per la gestione e le recensioni dei viaggi fatti dagli utenti
+l'utente avrà come attributi
+	nome
+	cognome
+	email
+	password
+	ruolo (base,Admin)
+	dataDiNascita (LocalDate)
+ogni utente avrà n viaggi
+il viaggio avrà
+	utente
+	meta
+	valutazione (0-5)
+	dataPartenza (LocalDate)
+	dataRitorno (LocalDate)
+	descrizione
+la meta avrà (barcellona, milano,bucarest, canicattì,capracotta... ecc)
+	nome
+	nazionalità
+	un elenco di tipologie
+
+la tipologia avrà (mare, lago, montagna, deserto, vulcano...ecc)
+	il tipo
+	un elenco di mete
+
+un utente base potrà
+	inserire un viaggio, visualizzare i propri viaggi
+	visualizzare le mete
+	visualizzare le mete per singola tipologia
+	visualizzare le 10 mete con recensione più alta
+	visualizzare i viaggi per una singola meta
+
+un utente admin potrà
+	creare le tipologie
+	creare le mete
+	cancellare un viaggio
+	cancellare un utente base
+	(tutte le visuallizza dell'utente base)
