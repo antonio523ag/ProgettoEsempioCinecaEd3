@@ -1,30 +1,14 @@
-package dev.antoniogrillo.primoprogettoesempio.entity;
-
-import jakarta.persistence.*;
+package dev.antoniogrillo.primoprogettoesempio.dto.response;
 
 import java.util.List;
 
-@Entity
-public class Indirizzo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class IndirizzoDTO {
     private String via;
     private String civico;
     private String cap;
     private String citta;
-
-    @ManyToMany(mappedBy = "indirizzi", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    private List<Persona> persone;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private long id;
+    private List<String> nomeAbitanti;
 
     public String getVia() {
         return via;
@@ -58,11 +42,19 @@ public class Indirizzo {
         this.citta = citta;
     }
 
-    public List<Persona> getPersone() {
-        return persone;
+    public long getId() {
+        return id;
     }
 
-    public void setPersone(List<Persona> persone) {
-        this.persone = persone;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<String> getNomeAbitanti() {
+        return nomeAbitanti;
+    }
+
+    public void setNomeAbitanti(List<String> nomeAbitanti) {
+        this.nomeAbitanti = nomeAbitanti;
     }
 }

@@ -1,12 +1,16 @@
 package dev.antoniogrillo.primoprogettoesempio.service.impl;
 
+import dev.antoniogrillo.primoprogettoesempio.dto.request.LoginRequestDTO;
 import dev.antoniogrillo.primoprogettoesempio.entity.Persona;
 import dev.antoniogrillo.primoprogettoesempio.repository.PersonaRepository;
 import dev.antoniogrillo.primoprogettoesempio.service.def.IndirizzoService;
 import dev.antoniogrillo.primoprogettoesempio.service.def.PersonaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,11 +24,9 @@ public class PersonaServiceImpl implements PersonaService {
 
     //Constructor Injection(consigliata da Spring 3.1)
     private final PersonaRepository repo;
-    private final IndirizzoService indirizzoService;
 
-    public PersonaServiceImpl(PersonaRepository repo,IndirizzoService i)  {
+    public PersonaServiceImpl(PersonaRepository repo)  {
         this.repo = repo;
-        indirizzoService=i;
     }
 
     @Override
@@ -38,14 +40,22 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public Persona save(Persona persona) {
         if(persona.getId()!=0)return null;
-        return repo.save(persona);
+        try {
+            return repo.save(persona);
+        }catch (Exception e){
+            if(e instanceof SQLIntegrityConstraintViolationException) throw new ResponseStatusException(HttpStatus.CONFLICT,e.getMessage());
+            else throw e;
+        }
     }
 
     @Override
-    public Persona login(String username, String password) {
-        return repo.findAll().stream()
-                .filter(p->p.getEmail().equalsIgnoreCase(username)&&p.getPassword().equals(password))
-                .findFirst().orElse(null);
+    public Persona login(LoginRequestDTO request) {
+        Optional<Persona> opt=repo.findByEmail(request.getUsername());
+        if(!opt.isPresent())return null;
+        Persona p=opt.get();
+        if(!p.getPassword().equals(request.getPassword()))return null;
+        return repo.findByEmailAndPassword(request.getUsername(),request.getPassword())
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Credenziali non valide"));
     }
 
     @Override
@@ -61,5 +71,10 @@ public class PersonaServiceImpl implements PersonaService {
     public Persona update(Persona persona) {
         if(persona.getId()!=0)return repo.save(persona);
         return null;
+    }
+
+    @Override
+    public List<Persona> findAllById(List<Long> idPersone) {
+        return repo.findAllById(idPersone);
     }
 }

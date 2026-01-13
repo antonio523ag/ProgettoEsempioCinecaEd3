@@ -52,7 +52,7 @@ public class PrimoController {
         return new Autovettura(marca,modello,annoImmatricolazione);
     }
 
-    @PostMapping(value="/getAutovettura")
+    @PostMapping(value="/getAutovettura",consumes = MediaType.APPLICATION_JSON_VALUE)
     public String getAutovettura(@RequestBody Autovettura a){
         return "Marca: "+a.getMarca()+" Modello: "+a.getModello()+" Anno: "+a.getAnnoImmatricolazione();
     }
@@ -61,4 +61,5 @@ public class PrimoController {
     public Autovettura getXML(){
         return new Autovettura("Fiat","Panda",1990);
     }
+
 }
