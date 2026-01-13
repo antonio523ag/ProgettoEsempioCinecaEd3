@@ -1,7 +1,5 @@
 package dev.antoniogrillo.primoprogettoesempio.dto.request;
 
-import java.util.List;
-
 public class AggiungiIndirizzoDTO {
     private String via;
     private String civico;

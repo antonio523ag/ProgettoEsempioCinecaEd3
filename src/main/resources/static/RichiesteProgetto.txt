@@ -36,3 +36,29 @@ un utente admin potrà
 	cancellare un viaggio
 	cancellare un utente base
 	(tutte le visuallizza dell'utente base)
+
+
+Step implementazione Security
+    1-> importo le dipendenze
+    2-> implemento UserDetails nella Classe Utente
+    3-> creo il service per la gestione del Token JWT
+    4-> creo la classe di Configurazione per i bean per la security
+    5-> creo il filter per JWT
+    6-> creo la classe che gestisce la filterChain
+
+dopo aver implementato la security
+
+per ogni entità
+
+{
+creo i controller capendo così quali DTO mi servono per le request e quali per le response
+
+
+creo i DTO
+creo i mapper per la conversione tra DTO e Entity
+
+creo i service per le operazioni CRUD
+
+creo le repository con i metodi che mi servono
+
+}
