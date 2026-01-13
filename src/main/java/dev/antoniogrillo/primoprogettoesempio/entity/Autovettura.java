@@ -2,11 +2,19 @@ package dev.antoniogrillo.primoprogettoesempio.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(uniqueConstraints = {
         @UniqueConstraint(name = "marca_modello_anno_uni",columnNames = {"anno_di_immatricolazione","marca","modello"})
 })
+@Getter //crea tutti i getter (se usato sulle singole variabili crea il getter della singola variabile)
+@Setter //crea tutti i setter (se usato sulle singole variabili crea il setter della singola variabile)
+@NoArgsConstructor //crea un costruttore vuoto
+@AllArgsConstructor //crea un costruttore con tutti i parametri, i parametri saranno nell'ordine di definizione
 public class Autovettura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,67 +35,4 @@ public class Autovettura {
     @JoinColumn(name="persona_fk",nullable = false)
     private Persona proprietario;
 
-    public Autovettura(){}
-
-    public Autovettura(String marca, String modello, int annoImmatricolazione) {
-        this.marca = marca;
-        this.modello = modello;
-        this.annoImmatricolazione = annoImmatricolazione;
     }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModello() {
-        return modello;
-    }
-
-    public void setModello(String modello) {
-        this.modello = modello;
-    }
-
-    public int getAnnoImmatricolazione() {
-        return annoImmatricolazione;
-    }
-
-    public void setAnnoImmatricolazione(int annoImmatricolazione) {
-        this.annoImmatricolazione = annoImmatricolazione;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public boolean isNuova() {
-        return nuova;
-    }
-
-    public void setNuova(boolean nuova) {
-        this.nuova = nuova;
-    }
-
-    public Persona getProprietario() {
-        return proprietario;
-    }
-
-    public void setProprietario(Persona proprietario) {
-        this.proprietario = proprietario;
-    }
-}

@@ -4,18 +4,17 @@ import dev.antoniogrillo.primoprogettoesempio.dto.request.AggiungiIndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.dto.response.IndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.entity.Persona;
 import dev.antoniogrillo.primoprogettoesempio.service.def.IndirizzoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor //crea un costruttore con tutte i parametri final
 public class IndirizzoController {
 
     private final IndirizzoService service;
 
-    public IndirizzoController(IndirizzoService service) {
-        this.service = service;
-    }
 
     @GetMapping("/indirizzi/{id}")
     public ResponseEntity<IndirizzoDTO> getById(@PathVariable long id){
