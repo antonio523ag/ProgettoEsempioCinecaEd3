@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(uniqueConstraints = {
         @UniqueConstraint(name = "marca_modello_anno_uni",columnNames = {"anno_di_immatricolazione","marca","modello"})
@@ -34,5 +36,13 @@ public class Autovettura {
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name="persona_fk",nullable = false)
     private Persona proprietario;
+    @Version
+    private int version;
+
+    public Autovettura(String marca, String modello, int annoImmatricolazione) {
+        this.marca = marca;
+        this.modello = modello;
+        this.annoImmatricolazione = annoImmatricolazione;
+    }
 
     }

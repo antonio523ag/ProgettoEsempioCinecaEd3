@@ -4,12 +4,16 @@ import dev.antoniogrillo.primoprogettoesempio.dto.request.AggiungiIndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.dto.response.IndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.entity.Indirizzo;
 import dev.antoniogrillo.primoprogettoesempio.entity.Persona;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class IndirizzoMapper {
+
+    private final PageMapper pageMapper;
 
     public IndirizzoDTO toIndirizzoDTO(Indirizzo i){
         IndirizzoDTO indirizzoDTO = new IndirizzoDTO();

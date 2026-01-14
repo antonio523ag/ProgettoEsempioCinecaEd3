@@ -39,6 +39,7 @@ public class GestoreTokenServiceImpl implements GestoreTokenService {
         builderClaim.issuedAt(new Date(System.currentTimeMillis()));
         builderClaim.expiration(new Date(System.currentTimeMillis() + durata));
         builderClaim.add("miaCustom","testo custom senza senso");
+        builderClaim.add("Ruolo",persona.getRuolo());
         return builderClaim.and().signWith(getKey()).compact();
     }
 
@@ -56,6 +57,7 @@ public class GestoreTokenServiceImpl implements GestoreTokenService {
         if(token.startsWith("Bearer "))token=token.substring(7);
         String email=getSubject(token);
         if(email==null)return null;
+        if(!verificaToken(token))return null;
         return repo.findByEmail(email).orElse(null);
     }
 

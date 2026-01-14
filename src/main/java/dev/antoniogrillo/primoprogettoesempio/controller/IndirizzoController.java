@@ -4,6 +4,7 @@ import dev.antoniogrillo.primoprogettoesempio.dto.request.AggiungiIndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.dto.response.IndirizzoDTO;
 import dev.antoniogrillo.primoprogettoesempio.entity.Persona;
 import dev.antoniogrillo.primoprogettoesempio.service.def.IndirizzoService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

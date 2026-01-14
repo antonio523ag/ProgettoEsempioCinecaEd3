@@ -39,6 +39,7 @@ public class GestorePathSecurity {
                         .requestMatchers("/indirizzo/add").hasAnyRole(Ruolo.ADMIN.name(),Ruolo.UTENTE.name())
                         .requestMatchers("/api/persona/salva").permitAll()
                         .requestMatchers("/console/**").permitAll()
+                        .requestMatchers("/api/automobili/**").authenticated()
                         .anyRequest().authenticated())
                 .authenticationProvider(provider)
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
