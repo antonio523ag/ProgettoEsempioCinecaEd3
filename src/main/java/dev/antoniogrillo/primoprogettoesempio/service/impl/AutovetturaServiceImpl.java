@@ -44,7 +44,7 @@ public class AutovetturaServiceImpl implements AutovetturaService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public AutomobileDTO modificaAutomobile(ModificaAutomobileDTO dto) {
         Persona p=personaService.getById(dto.getIdProprietario());
         Autovettura a1=repo.findById(dto.getId()).orElse(null);

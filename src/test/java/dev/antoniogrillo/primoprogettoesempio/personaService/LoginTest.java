@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ContextConfiguration(classes = PrimoProgettoEsempioApplication.class)
-
 public class LoginTest {
 
     @Autowired

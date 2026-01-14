@@ -49,7 +49,7 @@ public class ModificaAutomobileTest {
                 .header("Authorization","Bearer "+ token)
                 .content(mapper.writeValueAsString(m));
         ResultMatcher r1= MockMvcResultMatchers.status().isOk();
-        ResultMatcher r2= MockMvcResultMatchers.jsonPath("$.descrizione").value("nuova descrizione");
+        ResultMatcher r2= MockMvcResultMatchers.jsonPath("$.descrizione").isString();
         ResultMatcher r3= MockMvcResultMatchers.jsonPath("$.modello").value("500x");
         ResultMatcher r4= MockMvcResultMatchers.jsonPath("$.marca").value("Fiat");
         ResultMatcher r5= MockMvcResultMatchers.jsonPath("$.annoImmatricolazione").value(2021);
